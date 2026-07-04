@@ -1,22 +1,36 @@
 {
-  "name": "github-bot-temp",
+  "name": "github-automation-bot",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "next": "16.2.10",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "next-auth": "beta",
+    "@auth/drizzle-adapter": "^1",
+    "drizzle-orm": "^0.44",
+    "@neondatabase/serverless": "^0.10",
+    "@octokit/rest": "^22",
+    "pino": "^9",
+    "pino-pretty": "^13",
+    "@google/genai": "^1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "drizzle-kit": "^0.31",
+    "dotenv": "^16"
   }
 }
