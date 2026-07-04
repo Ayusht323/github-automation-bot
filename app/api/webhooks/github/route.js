@@ -99,6 +99,13 @@ export async function POST(request) {
   let title, sender, issueNumber, branch, url, body;
   const eventAction = payload.action || null;
 
+  // Prevent infinite loops: only process "opened" actions for issues and PRs.
+  // (Otherwise, when the bot adds a label, it triggers a "labeled" action and runs the rule again!)
+  if ((eventType === "issues" || eventType === "pull_request") && eventAction !== "opened") {
+    logger.info({ deliveryId, eventType, eventAction }, "Ignoring non-opened action to prevent loops");
+    return Response.json({ message: `Ignored action: ${eventAction}` });
+  }
+
   switch (eventType) {
     case "issues":
       title = payload.issue?.title;
